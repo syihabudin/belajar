@@ -1,0 +1,125 @@
+<?php get_header(); ?>
+<div id="et-main-area">
+	<div id="main-content">
+
+
+
+		<article id="archive-karir" class="page type-page status-publish hentry">
+
+
+			<div class="entry-content">
+				<div class="et_pb_section et_pb_fullwidth_section  et_pb_section_0 et_section_regular">
+
+					<?php $banner = get_field('image_header_iis','option');
+
+					if( !empty($banner) ): ?>
+
+					<section class="et_pb_fullwidth_header et_pb_module et_pb_bg_layout_dark et_pb_text_align_center header-title et_pb_fullwidth_header_0" style="    background-color: rgba(0,0,0,0.8);
+					background-image: url(<?php echo $banner;  ?>);">
+				<?php endif; ?>
+				<div class="et_pb_fullwidth_header_container center">
+					<div class="header-content-container center">
+						<div class="header-content">
+							<h1>INSTITUTE OF INTERNATIONAL STUDIES</h1>
+							<p>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="et_pb_fullwidth_header_overlay"></div>
+				<div class="et_pb_fullwidth_header_scroll"></div>
+			</section>
+
+		</div> <!-- .et_pb_section -->
+		<div id="profile-section" class="et_pb_section  et_pb_section_1 et_section_regular">
+
+			<div class=" et_pb_row et_pb_row_0">
+
+				<div class="et_pb_column et_pb_column_1_3 et_pb_column_0">
+					<div id="sidebar-profile" class="et_pb_widget_area et_pb_widget_area_left clearfix et_pb_module et_pb_bg_layout_dark  et_pb_sidebar_0">
+						<?php dynamic_sidebar( 'sidebar-iis' ); ?>
+					</div> <!-- .et_pb_widget_area -->
+				</div> <!-- .et_pb_column -->
+				<div class="et_pb_column et_pb_column_2_3 et_pb_column_1">
+					<div class=" et_pb_row_inner et_pb_row_inner_0">
+						<div class="et_pb_column et_pb_column_4_4 et_pb_column_inner et_pb_column_inner_0">
+							<div class="et_pb_text et_pb_module et_pb_bg_layout_light et_pb_text_align_left title-profile et_pb_text_0">
+								<h2>IIS Karir</h2>
+
+							</div> <!-- .et_pb_text --><div class="et_pb_text et_pb_module et_pb_bg_layout_light et_pb_text_align_left  et_pb_text_1">
+
+							<?php the_field('paragraf_pembuka_7','option'); ?>
+
+						</div> <!-- .et_pb_text -->
+					</div> <!-- .et_pb_column -->
+				</div> <!-- .et_pb_row_inner -->
+				<div class="wrap-accordion">
+					
+					
+					<?php
+				$no = 1; //variabel no untuk nomor urutnya.
+				if ( have_posts() ) :
+					while ( have_posts() ) : the_post();
+				$post_format = et_pb_post_format(); ?>
+
+				<article id="archive-karir" <?php post_class( 'et_pb_post' ); ?>>
+
+					<button class="accordion"><?php the_title(); ?></button>
+					<div class="panel">
+						<p>
+
+
+							<?php
+							$thumb = '';
+
+							$width = (int) apply_filters( 'et_pb_index_blog_image_width', 1080 );
+
+							$height = (int) apply_filters( 'et_pb_index_blog_image_height', 675 );
+							$classtext = 'et_pb_post_main_image';
+							$titletext = get_the_title();
+							$thumbnail = get_thumbnail( $width, $height, $classtext, $titletext, $titletext, false, 'Blogimage' );
+							$thumb = $thumbnail["thumb"];
+
+
+							if ( has_post_thumbnail() ):
+								?>
+							<a href="<?php the_permalink(); ?>">
+								<?php print_thumbnail( $thumb, $thumbnail["use_timthumb"], $titletext, $width, $height ); ?>
+							</a>
+						<?php endif; ?>
+						<?php 
+						the_content();
+
+						?>
+
+					</p>
+				</div>
+			</article> <!-- .et_pb_post -->
+			<?php
+			endwhile;
+
+			else :
+				get_template_part( 'includes/no-results', 'index' );
+			endif;
+			?>
+		</div>	
+		<nav class="pagination">
+			<?php pagination_bar(); ?>
+		</nav>
+
+	</div> <!-- .et_pb_column -->
+
+</div> <!-- .et_pb_row -->
+
+</div> <!-- .et_pb_section -->
+</div> <!-- .entry-content -->
+
+
+</article> <!-- .et_pb_post -->
+
+
+
+</div> <!-- #main-content -->
+
+
+<?php get_footer(); ?>
